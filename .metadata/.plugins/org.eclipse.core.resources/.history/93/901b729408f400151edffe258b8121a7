@@ -1,0 +1,90 @@
+import java.awt.Button;
+import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.Label;
+import java.awt.TextArea;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+
+
+
+
+public class Window {
+	static Label l1 = new Label("Welcome to osu! hand speed tester!");
+	static Label l2 = new Label("Please enter time duration (seconds):");
+	static Label l3 = new Label("Hit z and x here!");
+	static TextField l4 = new TextField("",49);
+	static Button b1 = new Button("Start");
+	static TextField t1 = new TextField("",5);
+	static TextArea t2 = new TextArea("",3,50);
+	
+	public static void o1(String a){
+		l4.setText(a);
+	}
+	
+	
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Window window = new Window();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Window() {
+		init();
+		
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	public void init() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 400, 200);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLayout(new FlowLayout(FlowLayout.LEADING));
+		
+		
+		
+		frame.add(l1);
+		frame.add(l2);
+		frame.add(t1);
+		frame.add(b1);
+		frame.add(l3);
+		frame.add(l4);
+		frame.add(t2);
+		
+		t2.setEditable(false);
+		l4.setEditable(false);
+		
+		b1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				//t2.setEditable(true);
+				t1.setEditable(false);
+				Run.mainr();
+			}
+		});
+		
+		
+	}
+	
+
+}

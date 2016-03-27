@@ -1,0 +1,173 @@
+import java.awt.Button;
+import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.Label;
+import java.awt.TextArea;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+
+
+
+
+public class Window {
+	static String txt1="";
+	static String txt2="";
+	static String txt3="";
+	static Boolean bo1 = true;
+	static Label l1 = new Label("Welcome to osu! hand speed tester!");
+	static Label l2 = new Label("Please enter time duration (seconds):");
+	static Label l3 = new Label("Hit z and x here!");
+	static Label l31 = new Label("      ");
+	static TextArea l4 = new TextArea("",5,50);
+	static Button b1 = new Button("Start");
+	static TextField t1 = new TextField("",5);
+	static TextArea t2 = new TextArea("",5,50);
+	
+	/*public static void mainsl(int a){
+		try {
+			t.sleep(a);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}*/
+	
+	public static synchronized String datasy(int nu){
+		if (nu == 1){
+			return txt1;
+		}
+		if (nu == 2){
+			return txt2;
+		}
+		if (nu == 3){
+			return txt3;
+		}
+		return null;
+	}
+	public static synchronized Boolean datasy(){
+		return bo1;
+	}
+	
+	public static synchronized void upda(String a){
+		txt3 = a;
+	}
+	
+	public static synchronized void o1(String a){
+		//txt2 += a;
+		t2.append(a);
+	}
+	
+	public static synchronized String gt1(){
+		return txt1;
+	}
+	
+	public static synchronized String gt2(){
+		return txt3;
+	}
+	
+	public static synchronized void txta(boolean a){
+		bo1 = a;
+	}
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Window window = new Window();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Window() {
+		init();
+		
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	public void init() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLayout(new FlowLayout(FlowLayout.LEADING));
+		
+		
+		
+		frame.add(l1);
+		frame.add(l2);
+		frame.add(t1);
+		frame.add(b1);
+		frame.add(l3);
+		frame.add(t2);
+		frame.add(l31);
+		frame.add(l4);
+		
+		
+		/*class outup extends Thread {
+			public void run(){
+				while(true){
+				l4.setText(datasy(2));
+				}
+			}
+		}
+		outup tt1 = new outup();
+		Thread th1 = new Thread(tt1);
+		th1.start();
+		
+		class txtup extends Thread {
+			public void run(){
+				while(true){
+					upda(t2.getText());
+				}
+			}
+		}
+		txtup tt2 = new txtup();
+		Thread th2 = new Thread(tt2);
+		th2.start();
+		
+		class txtaup extends Thread {
+			public void run(){
+				while(true){
+					if (datasy()==true){
+						t2.setEditable(true);
+					}else if (datasy()==false){
+						t2.setEditable(false);
+					}
+				}
+			}
+		}
+		txtaup tt3 = new txtaup();
+		Thread th3 = new Thread(tt3);
+		th3.start();*/
+		
+		b1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				txt1 = t1.getText();
+				t2.setEditable(true);
+				t1.setEditable(false);
+				Run.mainr();
+			}
+		});
+		
+		
+	}
+	
+
+}

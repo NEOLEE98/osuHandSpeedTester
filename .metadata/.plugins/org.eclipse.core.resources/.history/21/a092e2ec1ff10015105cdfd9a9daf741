@@ -1,0 +1,160 @@
+import java.util.Scanner;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.util.concurrent.TimeUnit;
+
+import javax.swing.JOptionPane;
+
+import java.util.Timer;  
+import java.util.TimerTask;
+@SuppressWarnings("unused")
+public class osuHandSpeedTester implements Runnable{
+
+	public void run() 
+	{
+		//Scanner input=new Scanner(System.in);
+		//System.out.println("Welcome to osu! hand speed tester!");
+		//System.out.println("Please enter time duration (seconds):");
+		int time=Integer.valueOf(Window.gt1()).intValue();
+		Window.o1("Hit z and x as fast as possible in "+time+" seconds!");
+		try   
+		{   
+			//Thread.currentThread();
+			//Thread.sleep(5000);
+			
+		}
+		catch(Exception a){}
+		for(int cd=5;cd>0;cd--)
+		{
+			Window.o1(cd+" sec before start");
+			try   
+			{   
+			//Thread.currentThread();
+			//Thread.sleep(1000);
+			Window.mainsl(1000);
+			}
+			catch(Exception a){}
+		}
+		Window.o1("START!!");
+		Window.bo1=true;
+		try {
+			//Thread.currentThread();
+			Thread.sleep(time*1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Window.bo1=false;
+		String zx=Window.gt2();
+		if (zx.length()==0){
+			dio("No input");
+			System.exit(0);
+		}
+		int fchk=0;
+		while(fchk<zx.length())
+		{
+			if(zx.charAt(fchk)=='z'||zx.charAt(fchk)=='x')
+			{
+				fchk++;
+			}
+			else
+			{
+				dio("Your input is invalid!");
+				System.exit(0);
+			}
+		}
+			if (zx.charAt(0)=='z')
+			{
+				int schk=1;
+				for (;schk<zx.length();)
+				{
+					if(zx.charAt(schk)=='x')
+					{
+						schk++;
+					}
+					else
+					{
+						dio("Your input is unstable and will cause misses!");
+						dio("You are able to deal with long stream combos at "+calc(zx.length(),time,"Unstable")+"BPM!");
+						System.exit(0);
+					}
+					if(zx.charAt(schk)=='z')
+					{
+						schk++;
+					}
+					else
+					{
+						dio("Your input is unstable and will cause misses!");
+						dio("You are able to deal with long stream combos at "+calc(zx.length(),time,"Unstable")+"BPM!");
+						System.exit(0);
+					}
+				}
+			}
+			else if (zx.charAt(0)=='x')
+			{
+				int tchk=1;
+				for (;tchk<zx.length();)
+				{
+					if(zx.charAt(tchk)=='z')
+					{
+						tchk++;
+					}
+					else
+					{
+						dio("Your input is unstable and will cause misses!");
+						dio("You are able to deal with long stream combos at "+calc(zx.length(),time,"Unstable")+"BPM!");
+						System.exit(0);
+					}
+					if(zx.charAt(tchk)=='x')
+					{
+						tchk++;
+					}
+					else
+					{
+						dio("Your input is unstable and will cause misses!");
+						dio("You are able to deal with long stream combos at "+calc(zx.length(),time,"Unstable")+"BPM!");
+						System.exit(0);
+					}
+				}
+			}
+		dio("You are able to deal with long stream combos at "+calc(zx.length(),time)+"BPM!");
+	}
+
+	/*private static String input(Scanner input,int time) 
+	{
+		Timer timer=new Timer();
+		timer.schedule(new TimerTask()
+		{
+			public void run()
+			{
+				input.close();
+			}
+		},time*1000,1);
+		String zx=input.nextLine();
+		try   
+		{   
+			Thread.currentThread();
+			Thread.sleep(time*1000);
+		}
+		catch(Exception a){}
+		return(zx);
+	}*/
+	
+	private static double calc(double length,int time,String unstable) 
+	{
+		Timer timer=new Timer();
+		double BPM=length/time*60/4*0.9;
+		return BPM;
+	}
+	
+	private static double calc(double length,int time) 
+	{
+		Timer timer=new Timer();
+		double BPM=length/time*60/4;
+		return BPM;
+	}
+
+	public static void dio(String a){
+		JOptionPane.showMessageDialog(null, a,"System",JOptionPane.PLAIN_MESSAGE);
+	}
+}

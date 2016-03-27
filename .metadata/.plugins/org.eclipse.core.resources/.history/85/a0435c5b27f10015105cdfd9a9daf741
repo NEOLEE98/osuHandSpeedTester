@@ -1,0 +1,18 @@
+
+public class Run extends Thread{
+	public void run(){
+		Window.main(null);
+	}
+
+	public static void main(String[] args) {
+		
+		// TODO Auto-generated method stub
+
+	}
+	
+	
+	
+
+}
+
+
